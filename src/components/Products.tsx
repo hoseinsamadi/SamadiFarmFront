@@ -31,16 +31,7 @@ export default function Products({ filter, onFilter, onAdd, justAddedId }: Produ
 
   return (
     <section id="products" className="products-band">
-      <div className="shell" style={{ paddingTop: "3.5rem", paddingBottom: "4rem" }}>
-        <div className="products-head reveal">
-          <span className="eyebrow">محصولات فصل</span>
-          <h2 className="section-title">برداشتِ تازه‌ی کندوها</h2>
-          <p>
-            همه‌ی شیشه‌ها همان روزِ برداشت درب‌موم می‌شوند و همراه با برگه‌ی آزمایش ساکارز و
-            رطوبت به دست شما می‌رسند.
-          </p>
-        </div>
-
+      <div className="shell" style={{ paddingTop: "2.5rem", paddingBottom: "4rem" }}>
         {/* فیلترها */}
         <div className="filters reveal" role="tablist" aria-label="فیلتر دسته‌بندی محصولات">
           {FILTERS.map((f) => (

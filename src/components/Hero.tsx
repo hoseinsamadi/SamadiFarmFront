@@ -1,6 +1,7 @@
 /* ──────────── بخش Hero — بازکننده‌ی صفحه با قاب بایومورفیک،
                نشان‌های شناور و مسیر پرواز زنبور ──────────── */
 import type React from "react";
+import { Link } from "react-router-dom";
 import { HERO } from "../data/site";
 import { IconArrow, IconDrop, IconFlask, IconSun } from "./icons";
 
@@ -67,13 +68,13 @@ export default function Hero() {
             {HERO.desc}
           </p>
           <div className="hero-ctas reveal" style={{ "--d": "0.32s" } as React.CSSProperties}>
-            <a href="#products" className="btn btn-primary">
+            <Link to="/products" className="btn btn-primary">
               {HERO.ctaPrimary}
               <IconArrow size={18} />
-            </a>
-            <a href="#story" className="btn btn-ghost">
+            </Link>
+            <Link to="/story" className="btn btn-ghost">
               {HERO.ctaSecondary}
-            </a>
+            </Link>
           </div>
           <div className="hero-mini reveal" style={{ "--d": "0.44s" } as React.CSSProperties}>
             <div className="hero-mini-avatars" aria-hidden="true">

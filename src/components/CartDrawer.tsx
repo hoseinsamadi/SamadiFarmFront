@@ -1,5 +1,6 @@
 /* ──────────── کشوی سبد خرید ──────────── */
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { CONTACT, type Product } from "../data/site";
 import { formatToman, toFa } from "../hooks/useReveal";
 import { IconArrow, IconBag, IconCheck, IconMinus, IconPlus, IconTrash, IconWhatsApp, IconX } from "./icons";
@@ -98,10 +99,10 @@ export default function CartDrawer({
               <br />
               از برداشت تازه‌ی کندوها دیدن کنید.
             </p>
-            <a href="#products" className="btn btn-primary" onClick={onClose}>
+            <Link to="/products" className="btn btn-primary" onClick={onClose}>
               دیدن محصولات
               <IconArrow size={17} />
-            </a>
+            </Link>
           </div>
         ) : (
           <>

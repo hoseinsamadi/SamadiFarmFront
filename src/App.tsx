@@ -1,155 +1,137 @@
 /* ════════════════════════════════════════════════════════════
-   صمدی فارم — App
-   سرهم‌بندی همه‌ی بخش‌ها + state سبد خرید، فیلتر و توست.
-   ساختار: HTML/JSX در کامپوننت‌ها | CSS جدا در src/styles/site.css
+   صمدی فارم — ریشه‌ی برنامه
+   ساختار چندصفحه‌ای با روتر:
+     /          → خانه
+     /products  → صفحه‌ی محصولات (با فیلتر دسته‌بندی)
+     /story     → داستان برند + ویدیوهای یوتیوب
+     /reviews   → دیدگاه مشتریان
    ════════════════════════════════════════════════════════════ */
-import { useCallback, useEffect, useRef, useState } from "react";
-import Benefits from "./components/Benefits";
-import CartDrawer, { type CartEntry } from "./components/CartDrawer";
-import Categories from "./components/Categories";
-import Footer from "./components/Footer";
+import { useCallback, useEffect, useState } from "react";
+import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/Header";
-import Hero from "./components/Hero";
-import OrderSection from "./components/OrderSection";
-import Products, { type Filter } from "./components/Products";
-import Story from "./components/Story";
-import Testimonials from "./components/Testimonials";
-import Ticker from "./components/Ticker";
+import Footer from "./components/Footer";
+import CartDrawer, { type CartEntry } from "./components/CartDrawer";
 import { IconCheck } from "./components/icons";
-import { PRODUCTS, type Product } from "./data/site";
-import { useHeroIntro, useReveal } from "./hooks/useReveal";
+import HomePage from "./pages/HomePage";
+import ProductsPage from "./pages/ProductsPage";
+import StoryPage from "./pages/StoryPage";
+import ReviewsPage from "./pages/ReviewsPage";
+import { toFa, useReveal } from "./hooks/useReveal";
+import type { Product } from "./data/site";
 
-export default function App() {
-  /* ── state سبد خرید ── */
-  const [cart, setCart] = useState<Record<string, number>>({});
+/* ── نمایش صفحه‌ها با انیمیشن ورود هنگام تغییر مسیر ── */
+function AnimatedRoutes({
+  onAdd,
+  justAddedId,
+}: {
+  onAdd: (p: Product) => void;
+  justAddedId: string | null;
+}) {
+  const location = useLocation();
+  return (
+    <div key={location.pathname} className="page-in">
+      <Routes location={location}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/products" element={<ProductsPage onAdd={onAdd} justAddedId={justAddedId} />} />
+        <Route path="/story" element={<StoryPage />} />
+        <Route path="/reviews" element={<ReviewsPage />} />
+        <Route path="*" element={<HomePage />} />
+      </Routes>
+    </div>
+  );
+}
+
+/* ── پوسته‌ی مشترک همه‌ی صفحات: سربرگ، فوتر، سبد خرید، توست ── */
+function SiteShell() {
+  const location = useLocation();
+  const [entries, setEntries] = useState<CartEntry[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
-  const [badgeKey, setBadgeKey] = useState(0);
   const [justAddedId, setJustAddedId] = useState<string | null>(null);
-
-  /* ── فیلتر دسته‌بندی ── */
-  const [filter, setFilter] = useState<Filter>("all");
-
-  /* ── توست ── */
   const [toast, setToast] = useState<string | null>(null);
-  const toastTimer = useRef<number | null>(null);
-  const addedTimer = useRef<number | null>(null);
 
-  /* ── ظهورهای اسکرول و عنوان Hero ── */
-  useReveal([filter]);
-  useHeroIntro();
-
-  const showToast = useCallback((msg: string) => {
-    setToast(msg);
-    if (toastTimer.current) window.clearTimeout(toastTimer.current);
-    toastTimer.current = window.setTimeout(() => setToast(null), 2400);
-  }, []);
-
-  const addToCart = useCallback(
-    (p: Product) => {
-      setCart((c) => ({ ...c, [p.id]: (c[p.id] ?? 0) + 1 }));
-      setBadgeKey((k) => +new Date());
-      setJustAddedId(p.id);
-      if (addedTimer.current) window.clearTimeout(addedTimer.current);
-      addedTimer.current = window.setTimeout(() => setJustAddedId(null), 1600);
-      showToast(`«${p.name}» به سبد اضافه شد`);
-    },
-    [showToast]
-  );
-
-  const inc = useCallback((id: string) => {
-    setCart((c) => ({ ...c, [id]: (c[id] ?? 0) + 1 }));
-  }, []);
-
-  const dec = useCallback((id: string) => {
-    setCart((c) => {
-      const next = { ...c };
-      if ((next[id] ?? 0) <= 1) delete next[id];
-      else next[id] -= 1;
-      return next;
-    });
-  }, []);
-
-  const remove = useCallback((id: string) => {
-    setCart((c) => {
-      const next = { ...c };
-      delete next[id];
-      return next;
-    });
-  }, []);
-
-  const entries: CartEntry[] = PRODUCTS.filter((p) => cart[p.id]).map((p) => ({
-    product: p,
-    qty: cart[p.id],
-  }));
-  const cartCount = entries.reduce((s, e) => s + e.qty, 0);
-  const cartTotal = entries.reduce((s, e) => s + e.qty * e.product.price, 0);
-
-  /* قفل اسکرول وقتی کشو باز است + بستن با Escape */
+  /* با هر بار تغییر صفحه: اسکرول به بالا + بازخوانی انیمیشن‌های ظهور */
   useEffect(() => {
-    document.body.style.overflow = cartOpen ? "hidden" : "";
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setCartOpen(false);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [cartOpen]);
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+  useReveal([location.pathname]);
 
-  useEffect(
-    () => () => {
-      if (toastTimer.current) window.clearTimeout(toastTimer.current);
-      if (addedTimer.current) window.clearTimeout(addedTimer.current);
-    },
-    []
-  );
+  /* نمایش موقت توست */
+  useEffect(() => {
+    if (!toast) return;
+    const t = window.setTimeout(() => setToast(null), 2600);
+    return () => window.clearTimeout(t);
+  }, [toast]);
+
+  /* پاک‌کردن حالت «اضافه شد» دکمه‌ی محصول */
+  useEffect(() => {
+    if (!justAddedId) return;
+    const t = window.setTimeout(() => setJustAddedId(null), 1500);
+    return () => window.clearTimeout(t);
+  }, [justAddedId]);
+
+  /* افزودن به سبد */
+  const add = useCallback((p: Product) => {
+    setEntries((prev) => {
+      const existing = prev.find((e) => e.product.id === p.id);
+      if (existing) {
+        return prev.map((e) => (e.product.id === p.id ? { ...e, qty: e.qty + 1 } : e));
+      }
+      return [...prev, { product: p, qty: 1 }];
+    });
+    setJustAddedId(p.id);
+    setToast(`«${p.name}» به سبد اضافه شد`);
+  }, []);
+
+  const inc = (id: string) =>
+    setEntries((prev) => prev.map((e) => (e.product.id === id ? { ...e, qty: e.qty + 1 } : e)));
+  const dec = (id: string) =>
+    setEntries((prev) =>
+      prev
+        .map((e) => (e.product.id === id ? { ...e, qty: e.qty - 1 } : e))
+        .filter((e) => e.qty > 0)
+    );
+  const remove = (id: string) => setEntries((prev) => prev.filter((e) => e.product.id !== id));
+
+  const count = entries.reduce((s, e) => s + e.qty, 0);
+  const total = entries.reduce((s, e) => s + e.qty * e.product.price, 0);
 
   return (
-    <div className="page-root">
-      {/* لایه‌ی محیطی (کندوی محو + هاله‌های رنگی) */}
-      <div className="ambient" aria-hidden="true" />
-
-      <Header
-        cartCount={cartCount}
-        badgeKey={badgeKey}
-        onCartOpen={() => setCartOpen(true)}
-      />
+    <div className="page">
+      <Header cartCount={count} onOpenCart={() => setCartOpen(true)} />
 
       <main>
-        <Hero />
-        <Ticker />
-        <Benefits />
-        <Categories onSelectCategory={setFilter} />
-        <Products
-          filter={filter}
-          onFilter={setFilter}
-          onAdd={addToCart}
-          justAddedId={justAddedId}
-        />
-        <Story />
-        <Testimonials />
-        <OrderSection />
+        <AnimatedRoutes onAdd={add} justAddedId={justAddedId} />
       </main>
 
-      <Footer onSelectCategory={setFilter} />
+      <Footer />
 
       <CartDrawer
         open={cartOpen}
         onClose={() => setCartOpen(false)}
         entries={entries}
-        total={cartTotal}
+        total={total}
         onInc={inc}
         onDec={dec}
         onRemove={remove}
-        onCheckout={() => setCart({})}
+        onCheckout={() => setEntries([])}
       />
 
-      {/* توستِ بازخورد افزودن به سبد */}
-      <div className={`toast${toast ? " is-show" : ""}`} role="status" aria-live="polite">
-        <IconCheck size={17} />
-        {toast}
+      <div className={`toast${toast ? " is-show" : ""}`} role="status">
+        {toast && (
+          <>
+            <IconCheck size={18} />
+            {toast}
+          </>
+        )}
       </div>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <HashRouter>
+      <SiteShell />
+    </HashRouter>
   );
 }

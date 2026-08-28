@@ -1,5 +1,7 @@
-/* ──────────── دسته‌بندی محصولات — کلیک، فیلتر محصولات را تنظیم می‌کند ──────────── */
+/* ──────────── دسته‌بندی محصولات — کلیک، به صفحه‌ی محصولات
+               با فیلتر همان دسته می‌رود ──────────── */
 import type React from "react";
+import { useNavigate } from "react-router-dom";
 import { CATEGORIES, PRODUCTS, type CategoryId } from "../data/site";
 import { scrollToId, toFa } from "../hooks/useReveal";
 import { IconCells, IconFlower, IconGift, IconMeadow } from "./icons";
@@ -11,21 +13,29 @@ const ICONS = {
   gift: IconGift,
 };
 
-interface CategoriesProps {
-  onSelectCategory: (cat: CategoryId | "all") => void;
-}
+export default function Categories() {
+  const navigate = useNavigate();
 
-export default function Categories({ onSelectCategory }: CategoriesProps) {
+  const go = (cat: (typeof CATEGORIES)[number]) => {
+    if ("scrollTo" in cat && cat.scrollTo) {
+      /* بسته‌ی هدیه → صفحه‌ی محصولات، سپس فرم سفارش */
+      navigate("/products");
+      window.setTimeout(() => scrollToId("order"), 150);
+    } else {
+      navigate(`/products?cat=${cat.id}`);
+    }
+  };
+
   return (
-    <section id="categories" className="shell" style={{ paddingTop: "4rem", paddingBottom: "0.5rem" }}>
+    <section className="shell" style={{ paddingTop: "4rem", paddingBottom: "0.5rem" }}>
       <div className="cats-head reveal">
         <div>
           <span className="eyebrow">دسته‌بندی‌ها</span>
           <h2 className="section-title">از کندو چه می‌خواهید؟</h2>
         </div>
         <p>
-          هر دسته، روایتِ خودش را از کندو دارد؛ روی هر کارت بزنید تا محصولاتِ همان دسته را
-          پایین‌تر ببینید.
+          هر دسته، روایتِ خودش را از کندو دارد؛ روی هر کارت بزنید تا محصولاتِ همان دسته را در
+          صفحه‌ی محصولات ببینید.
         </p>
       </div>
 
@@ -35,21 +45,14 @@ export default function Categories({ onSelectCategory }: CategoriesProps) {
           const count =
             "scrollTo" in cat && cat.scrollTo
               ? null
-              : PRODUCTS.filter((p) => p.cat === cat.id).length;
+              : PRODUCTS.filter((p) => p.cat === (cat.id as CategoryId)).length;
           return (
             <button
               type="button"
               key={cat.id}
               className="cat-card reveal"
               style={{ "--d": `${i * 0.09}s` } as React.CSSProperties}
-              onClick={() => {
-                if ("scrollTo" in cat && cat.scrollTo) {
-                  scrollToId(cat.scrollTo);
-                } else {
-                  onSelectCategory(cat.id as CategoryId);
-                  scrollToId("products");
-                }
-              }}
+              onClick={() => go(cat)}
             >
               {count !== null && <span className="cat-count">{toFa(count)}</span>}
               <span className="cat-icon">

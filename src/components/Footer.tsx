@@ -1,21 +1,22 @@
 /* ──────────── فوتر سایت ──────────── */
 import type React from "react";
-import { BRAND, CATEGORIES, CONTACT, FOOTER_YEAR, NAV_LINKS, type CategoryId } from "../data/site";
-import { scrollToId } from "../hooks/useReveal";
+import { Link, useNavigate } from "react-router-dom";
+import { BRAND, CATEGORIES, CONTACT, FOOTER_YEAR, type CategoryId } from "../data/site";
+import { NAV_ROUTES } from "./Header";
 import { IconBee, IconClock, IconInstagram, IconPhone, IconPin } from "./icons";
 
-interface FooterProps {
-  onSelectCategory: (cat: CategoryId | "all") => void;
-}
+export default function Footer() {
+  const navigate = useNavigate();
 
-export default function Footer({ onSelectCategory }: FooterProps) {
+  const goCategory = (id: CategoryId) => navigate(`/products?cat=${id}`);
+
   return (
     <footer className="site-footer">
       <div className="shell">
         <div className="footer-grid">
           {/* برند */}
           <div className="footer-brand">
-            <a href="#home" className="brand" style={{ color: "var(--cream)" }}>
+            <Link to="/" className="brand" style={{ color: "var(--cream)" }}>
               <span className="brand-hex">
                 <IconBee size={24} />
               </span>
@@ -25,10 +26,11 @@ export default function Footer({ onSelectCategory }: FooterProps) {
                   {BRAND.tagline}
                 </span>
               </span>
-            </a>
+            </Link>
             <p>
               زنبورستان خانوادگی صمدی؛ سه نسل است که عسلِ خام و فرآورده‌های کندو را بی‌واسطه از
-              دامنه‌های دماوند و سبلان به سفره‌ی شما می‌رسانیم.
+              دامنه‌های دماوند و سبلان به سفره‌ی شما می‌رسانیم — و همه‌چیز را جلوی دوربین
+              یوتیوب نشان می‌دهیم.
             </p>
           </div>
 
@@ -36,35 +38,27 @@ export default function Footer({ onSelectCategory }: FooterProps) {
           <nav aria-label="دسترسی سریع">
             <h4 className="footer-title">دسترسی سریع</h4>
             <ul className="footer-links">
-              {NAV_LINKS.map((l) => (
-                <li key={l.id}>
-                  <a href={`#${l.id}`}>{l.label}</a>
+              {NAV_ROUTES.map((l) => (
+                <li key={l.to}>
+                  <Link to={l.to}>{l.label}</Link>
                 </li>
               ))}
             </ul>
           </nav>
 
-          {/* دسته‌بندی‌ها */}
+          {/* محصولات */}
           <nav aria-label="دسته‌بندی محصولات">
             <h4 className="footer-title">محصولات</h4>
             <ul className="footer-links">
               {CATEGORIES.filter((c) => !("scrollTo" in c)).map((c) => (
                 <li key={c.id}>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      onSelectCategory(c.id as CategoryId);
-                      scrollToId("products");
-                    }}
-                  >
+                  <button type="button" onClick={() => goCategory(c.id as CategoryId)}>
                     {c.title}
                   </button>
                 </li>
               ))}
               <li>
-                <button type="button" onClick={() => scrollToId("order")}>
-                  بسته‌ی هدیه
-                </button>
+                <Link to="/products">بسته‌ی هدیه</Link>
               </li>
             </ul>
           </nav>
