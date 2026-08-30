@@ -183,6 +183,20 @@ section { scroll-margin-top: 92px; }
 .brand-tag { display: block; font-size: 0.68rem; color: var(--ink-soft); font-weight: 600; }
 
 .nav-desktop { display: none; align-items: center; gap: 1.6rem; }
+/* Main navigation styles */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (min-width: 900px) { 
+  .main-nav {
+    gap: 1.6rem;
+  }
+}
+
+.nav-desktop { display: none; align-items: center; gap: 1.6rem; }
 @media (min-width: 900px) { .nav-desktop { display: flex; } }
 
 .nav-link {
