@@ -4,7 +4,6 @@
 import type React from "react";
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero";
-import Ticker from "../components/Ticker";
 import Benefits from "../components/Benefits";
 import Categories from "../components/Categories";
 import { IconArrow, IconQuote, IconStar, IconYoutube } from "../components/icons";
@@ -14,7 +13,6 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <Ticker />
       <Benefits />
       <Categories />
 
