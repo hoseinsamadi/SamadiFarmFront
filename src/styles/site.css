@@ -185,6 +185,13 @@ section { scroll-margin-top: 92px; }
 .nav-desktop { display: none; align-items: center; gap: 1.6rem; }
 @media (min-width: 900px) { .nav-desktop { display: flex; } }
 
+.main-nav {
+  padding-block: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
 .nav-link {
   position: relative;
   font-size: 0.9rem;
