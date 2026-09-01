@@ -1,5 +1,5 @@
 /* ════════════ صفحه‌ی داستان ما ════════════
-   بازکننده‌ی تصویری + متن بلند داستان + خط زمانی سه نسل
+   بازکننده‌ی تصویری + متن بلند داستان + خط زمانی دو نسل
    + آمار با شمارش متحرک + ویدیوهای یوتیوب + دعوت به خرید */
 import type React from "react";
 import { Link } from "react-router-dom";
@@ -73,7 +73,7 @@ export default function StoryPage() {
       <section className="shell" style={{ paddingTop: "4.2rem" }}>
         <div className="story-cols">
           <div>
-            <h2 className="section-title">سه نسل، یک وسواس</h2>
+            <h2 className="section-title">دو نسل، یک وسواس</h2>
             {STORY_LONG.map((para, i) => (
               <p
                 className="story-para reveal"
