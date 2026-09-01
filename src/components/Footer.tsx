@@ -18,7 +18,11 @@ export default function Footer() {
           <div className="footer-brand">
             <Link to="/" className="brand" style={{ color: "var(--cream)" }}>
               <span className="brand-hex">
-                <IconBee size={24} />
+              {/* <IconBee size={24} />  */}
+                <img  src="src/img/logohoseinbeekeeper.png"  alt="صمدی فارم"
+              width="200"
+              height="200"
+                 />
               </span>
               <span>
                 <strong className="brand-name">{BRAND.name}</strong>

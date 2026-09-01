@@ -42,7 +42,12 @@ export default function Header({ cartCount, onOpenCart }: HeaderProps) {
       <div className="shell header-inner">
         <Link to="/" className="brand" aria-label="صمدی فارم — بازگشت به صفحه‌ی خانه">
           <span className="brand-hex">
-            <IconBee size={24} />
+             <img
+              src="src/img/logohoseinbeekeeper.png"
+              alt="صمدی فارم"
+              width="200"
+              height="200"
+            />
           </span>
           <span>
             <strong className="brand-name">{BRAND.name}</strong>
