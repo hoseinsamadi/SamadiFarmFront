@@ -1,0 +1,85 @@
+/* ════════════════════════════════════════════════════════════
+   فونت‌های لوکال — جایگزین Google Fonts
+   این فایل @font-face تعریف‌های لازم برای فونت‌های لوکال را شامل می‌شود.
+   ============================================================ */
+
+@font-face {
+  font-family: "Lalezar";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./Lalezar-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url("./Vazirmatn[wght].ttf") format("truetype");
+}
+
+/* فونت Vazirmatn متغیر (wght) از فایل توفی با وزن متغیر استفاده می‌کند */
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url("./Vazirmatn[wght].ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("./Vazirmatn[wght].ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./Vazirmatn[wght].ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("./Vazirmatn[wght].ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("./Vazirmatn[wght].ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./Vazirmatn[wght].ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("./Vazirmatn[wght].ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("./Vazirmatn[wght].ttf") format("truetype");
+}

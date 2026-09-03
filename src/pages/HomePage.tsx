@@ -97,7 +97,7 @@ export default function HomePage() {
             </figure>
           ))}
         </div>
-      </section>
+      </section> 
 
       {/* ── دعوت به خرید ── */}
       <section className="shell" style={{ padding: "4.5rem 1.25rem" }}>

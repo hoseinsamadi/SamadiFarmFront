@@ -4,6 +4,6 @@
    در فایل جداگانه‌ی  src/styles/site.css  نگهداری می‌شود.
    ============================================================ */
 
-@import url("https://fonts.googleapis.com/css2?family=Lalezar&family=Vazirmatn:wght@100..900&display=swap");
+@import "./fonts/fonts.css";
 @import "tailwindcss";
 @import "./styles/site.css";

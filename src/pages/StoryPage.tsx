@@ -5,38 +5,14 @@ import type React from "react";
 import { Link } from "react-router-dom";
 import {
   FEATURED_VIDEO,
-  STATS,
   STORY,
   STORY_LONG,
   TIMELINE,
   VIDEOS,
   YOUTUBE,
 } from "../data/site";
-import { formatToman, scrollToId, toFa, useCountUp } from "../hooks/useReveal";
+import { scrollToId } from "../hooks/useReveal";
 import { IconArrow, IconPlay, IconYoutube } from "../components/icons";
-
-function StatBlock({
-  value,
-  suffix,
-  label,
-  delay,
-}: {
-  value: number;
-  suffix: string;
-  label: string;
-  delay: number;
-}) {
-  const { ref, value: v } = useCountUp(value);
-  return (
-    <div className="reveal" style={{ "--d": `${delay}s` } as React.CSSProperties}>
-      <span className="stat-num" ref={ref as React.RefObject<HTMLSpanElement>}>
-        {formatToman(v)}
-        {suffix && <span> {toFa(suffix)}</span>}
-      </span>
-      <span className="stat-label">{label}</span>
-    </div>
-  );
-}
 
 export default function StoryPage() {
   return (
@@ -106,13 +82,6 @@ export default function StoryPage() {
               ))}
             </div>
           </div>
-        </div>
-
-        {/* ── آمار ── */}
-        <div className="stats-grid stats-grid--wide" style={{ marginTop: "3.8rem" }}>
-          {STATS.map((s, i) => (
-            <StatBlock key={s.label} value={s.value} suffix={s.suffix} label={s.label} delay={i * 0.1} />
-          ))}
         </div>
       </section>
 
