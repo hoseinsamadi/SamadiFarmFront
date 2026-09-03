@@ -28,7 +28,7 @@ export const HERO = {
   ctaSecondary: "داستان دو نسل ما",
   img: "../mainBiBak.png",
   imgAlt: "کندوهای چوبی صمدی فارم میان دشت گل‌های وحشی",
-  captionTitle: "برداشت تازه‌ی تابستان 1405",
+  captionTitle: "برداشت تازه‌ی تابستان ۱۴۰۵",
   captionCopy: "موجودی محدود — هر شیشه شماره‌ی کندو دارد",
   badges: [
     { icon: "drop", text: "عسل ۱۰۰٪ خام" },
@@ -215,7 +215,7 @@ export const TIMELINE = [
     desc: "حاج علی صمدی اولین کندوها را در دشت قزوین داشت .",
   },
   {
-    year: "۱۳88",
+    year: "۱۳۸۸",
     title: "نسل اول  کندوها",
     desc: "خسین صمدی زنبورستان را بزرگ‌تر کرد وشرکت دانش بینان رو راه اندازی کرد و دستگاه زهر زنبور عسل ساخت.",
   },
@@ -225,7 +225,7 @@ export const TIMELINE = [
     desc: "با افزودن مراتع الموت و طارم آویشن و گون به خانواده‌ی محصولات اضافه شدند.",
   },
   {
-    year: "۱۴۰1",
+    year: "۱۴۰۱",
     title: "دوربین وارد کندوستان شد",
     desc: "کانال یوتیوب راه افتاد؛ از بهار تا برداشت، همه‌چیز جلوی دوربین ثبت می‌شود.",
   },
@@ -357,7 +357,7 @@ export const RATING_DIST = [
 ];
 
 export const CONTACT = {
-  phone: "09382866408",
+  phone: "۰۹۳۸۲۸۶۶۴۰۸",
   phoneHref: "tel:+989382866408",
   whatsapp: "989382866408",
   YOUTUBE: "samadi.farm",
@@ -366,4 +366,4 @@ export const CONTACT = {
   hours: "شنبه تا پنجشنبه — ۹ صبح تا ۸ شب",
 };
 
-export const FOOTER_YEAR = "1405";
+export const FOOTER_YEAR = "۱۴۰۵";
