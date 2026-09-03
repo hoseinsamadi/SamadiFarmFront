@@ -53,10 +53,6 @@ export default function ProductsPage({ onAdd, justAddedId }: ProductsPageProps) 
                 <IconHex size={15} />
                 {toFa(shown)} محصول آماده‌ی ارسال
               </span>
-              <span className="fact">
-                <IconBee size={15} />
-                برداشت پاییز ۱۴۰۴ — دماوند و سبلان
-              </span>
             </div>
           </div>
         </div>
