@@ -192,7 +192,7 @@ export default function StoryPage() {
       <section className="shell" style={{ padding: "4.5rem 1.25rem" }}>
         <div className="cta-band reveal">
           <h2>حالا که قصه را دیدید، طعمش را هم بچشید</h2>
-          <Link to="/products" className="btn btn-primary">
+          <Link to="/shop" className="btn btn-primary">
             دیدن محصولات
             <IconArrow size={17} />
           </Link>

@@ -68,7 +68,7 @@ export default function Hero() {
             {HERO.desc}
           </p>
           <div className="hero-ctas reveal" style={{ "--d": "0.32s" } as React.CSSProperties}>
-            <Link to="/products" className="btn btn-primary">
+            <Link to="/shop" className="btn btn-primary">
               {HERO.ctaPrimary}
               <IconArrow size={18} />
             </Link>

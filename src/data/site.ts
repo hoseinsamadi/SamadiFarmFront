@@ -356,6 +356,82 @@ export const RATING_DIST = [
   { stars: 1, pct: 1 },
 ];
 
+/* ──────────── داده‌های فروشگاه و پرداخت ──────────── */
+export interface ShippingMethod {
+  id: string;
+  title: string;
+  desc: string;
+  price: number;
+  freeOver?: number;
+}
+
+export const SHIPPING_METHODS: ShippingMethod[] = [
+  { id: "normal", title: "پست پیشتاز", desc: "تحویل ۲ تا ۴ روز کاری در سراسر کشور", price: 85_000 },
+  { id: "express", title: "پیک اکسپرس", desc: "تحویل همان روز برای تهران و کرج", price: 180_000 },
+  { id: "free", title: "ارسال رایگان کندو", desc: "برای خریدهای بالای ۲ میلیون تومان", price: 0, freeOver: 2_000_000 },
+];
+
+export interface CryptoWallet {
+  coin: string;
+  network: string;
+  address: string;
+  usd: number;
+  decimals: number;
+}
+
+/* آدرس‌های نمونه — در نسخه‌ی جنگو از تنظیمات امن سرور خوانده می‌شود */
+export const CRYPTO_WALLETS: CryptoWallet[] = [
+  {
+    coin: "USDT",
+    network: "TRC20",
+    address: "TXk3qJmZr9VwYbNcF5sLdH2aPeR8tGuD4o",
+    usd: 1,
+    decimals: 2,
+  },
+  {
+    coin: "BTC",
+    network: "Bitcoin",
+    address: "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+    usd: 97_400,
+    decimals: 6,
+  },
+  {
+    coin: "ETH",
+    network: "ERC20",
+    address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
+    usd: 3_380,
+    decimals: 5,
+  },
+];
+
+export const BANK_GATEWAYS = ["زرین‌پال", "آی‌دی‌پی", "به‌پرداخت ملت"];
+
+export const RATES = { tomanPerUsd: 925_000 };
+
+export const DISCOUNT_CODES: Record<string, number> = {
+  ASAL10: 0.1,
+  KANDOO5: 0.05,
+};
+
+export const FAQ_ITEMS = [
+  {
+    q: "چطور از اصالت عسل مطمئن شوم؟",
+    a: "همراه هر شیشه، برگه‌ی آزمایش ساکارز و رطوبت همان برداشت ارسال می‌شود و ویدیوی برداشت همان کندو در کانال یوتیوب ما موجود است.",
+  },
+  {
+    q: "امکان پرداخت با ارز دیجیتال هست؟",
+    a: "بله؛ USDT (TRC20)، بیت‌کوین و اتریوم پذیرفته می‌شود. پس از پرداخت، رسید تراکنش را در واتساپ ارسال کنید.",
+  },
+  {
+    q: "ارسال چقدر طول می‌کشد؟",
+    a: "پست پیشتاز ۲ تا ۴ روز کاری و پیک اکسپرس برای تهران و کرج همان روز تحویل می‌دهد.",
+  },
+  {
+    q: "اگر عسل crystallized (شکرک) زد چه کنم؟",
+    a: "شکرک نشانه‌ی طبیعی‌بودن عسل خام است؛ شیشه را در آب ولرم (نه جوش) قرار دهید تا به حالت اول برگردد.",
+  },
+];
+
 export const CONTACT = {
   phone: "۰۹۱۲ ۳۴۵ ۶۷۸۹",
   phoneHref: "tel:+989123456789",

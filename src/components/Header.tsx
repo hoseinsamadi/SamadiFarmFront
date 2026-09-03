@@ -1,46 +1,40 @@
-/* ──────────── سربرگ چسبان — ناوبری بین صفحات ──────────── */
-import { useEffect, useState } from "react";
-import type React from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+/* ──────────── سربرگ سایت — ناوبری صفحات + اکانت + سبد خرید ──────────── */
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { BRAND } from "../data/site";
-import { toFa, useScrolled } from "../hooks/useReveal";
-import { IconBag, IconBee, IconMenu, IconX } from "./icons";
+import { useScrolled, useScrollSpy, toFa } from "../hooks/useReveal";
+import { useShop } from "../context/ShopContext";
+import { IconBag, IconBee, IconMenu, IconUser, IconX } from "./icons";
 
-/* مسیرهای اصلی سایت */
 export const NAV_ROUTES = [
   { to: "/", label: "خانه" },
-  { to: "/products", label: "محصولات" },
+  { to: "/shop", label: "فروشگاه" },
   { to: "/story", label: "داستان ما" },
   { to: "/reviews", label: "دیدگاه‌ها" },
 ];
 
 interface HeaderProps {
   cartCount: number;
-  onOpenCart: () => void;
+  badgeKey: number;
+  onCartOpen: () => void;
 }
 
-export default function Header({ cartCount, onOpenCart }: HeaderProps) {
+const SECTION_IDS = ["home", "shop", "story", "reviews"];
+
+export default function Header({ cartCount, badgeKey, onCartOpen }: HeaderProps) {
   const scrolled = useScrolled(10);
   const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
+  const activeSection = useScrollSpy(SECTION_IDS);
+  const { user } = useShop();
 
-  /* با تغییر صفحه، منوی موبایل بسته شود */
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
-
-  /* هنگام باز بودن منوی موبایل، اسکرول صفحه قفل شود */
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen]);
+  /* صفحه‌ی اصلی: هایلایت بر اساس بخشِ در حال نمایش؛ بقیه‌ی صفحات بر اساس مسیر */
+  const active = pathname === "/" ? `/#${activeSection}` : pathname;
 
   return (
-    <header className={`site-header${scrolled ? " is-scrolled" : ""}${menuOpen ? " menu-open" : ""}`}>
+    <header id="home" className={`site-header${scrolled ? " is-scrolled" : ""}`}>
       <div className="shell header-inner">
-        <Link to="/" className="brand" aria-label="صمدی فارم — بازگشت به صفحه‌ی خانه">
+        <Link to="/" className="brand" aria-label="صمدی فارم — صفحه‌ی خانه">
           <span className="brand-hex">
             <IconBee size={24} />
           </span>
@@ -52,63 +46,60 @@ export default function Header({ cartCount, onOpenCart }: HeaderProps) {
 
         <nav className="main-nav" aria-label="ناوبری اصلی">
           {NAV_ROUTES.map((l) => (
-            <NavLink
+            <Link
               key={l.to}
               to={l.to}
-              end={l.to === "/"}
-              className={({ isActive }) => `nav-link${isActive ? " is-active" : ""}`}
+              className={`nav-link${active === l.to || active === `/${l.to}` ? " is-active" : ""}`}
             >
               {l.label}
-            </NavLink>
+            </Link>
           ))}
         </nav>
 
         <div className="header-actions">
-          <Link to="/products" className="btn btn-primary btn-sm btn-hide-mobile">
-            سفارش آنلاین
+          <Link to="/account" className="icon-btn account-btn" aria-label="حساب کاربری و آدرس‌ها">
+            <IconUser size={19} />
+            {user && <span className="account-name">{user.name.split(" ")[0]}</span>}
           </Link>
-          <button
-            type="button"
-            className="cart-btn"
-            onClick={onOpenCart}
-            aria-label={`باز کردن سبد خرید — ${toFa(cartCount)} قلم`}
-          >
+
+          <Link to="/cart" className="icon-btn cart-btn" aria-label={`سبد خرید — ${toFa(cartCount)} قلم`}>
             <IconBag size={19} />
-            {cartCount > 0 && <span className="cart-count">{toFa(cartCount)}</span>}
-          </button>
+            {cartCount > 0 && (
+              <span key={badgeKey} className="cart-badge">
+                {toFa(cartCount)}
+              </span>
+            )}
+          </Link>
+
+          <a href="#order" className="btn btn-primary btn-sm btn-hide-mobile">
+            سفارش تلفنی
+          </a>
+
           <button
             type="button"
-            className="menu-btn"
-            onClick={() => setMenuOpen((o) => !o)}
-            aria-expanded={menuOpen}
+            className="icon-btn mobile-toggle"
+            onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? "بستن منو" : "باز کردن منو"}
+            aria-expanded={menuOpen}
           >
-            {menuOpen ? <IconX size={23} /> : <IconMenu size={23} />}
+            {menuOpen ? <IconX size={22} /> : <IconMenu size={22} />}
           </button>
         </div>
       </div>
 
-      {/* منوی موبایل */}
-      <div className={`mobile-menu${menuOpen ? " is-open" : ""}`}>
-        {NAV_ROUTES.map((l, i) => (
-          <NavLink
-            key={l.to}
-            to={l.to}
-            end={l.to === "/"}
-            style={{ "--d": `${i * 0.05}s` } as React.CSSProperties}
-            className={({ isActive }) => `mobile-link${isActive ? " is-active" : ""}`}
-          >
+      <nav className={`mobile-nav${menuOpen ? " is-open" : ""}`} aria-label="ناوبری موبایل">
+        {NAV_ROUTES.map((l) => (
+          <Link key={l.to} to={l.to} className="mobile-link" onClick={() => setMenuOpen(false)}>
             {l.label}
-          </NavLink>
+          </Link>
         ))}
-        <Link
-          to="/products"
-          className="btn btn-primary"
-          style={{ marginTop: "0.6rem", justifyContent: "center" } as React.CSSProperties}
-        >
-          سفارش آنلاین
+        <Link to="/account" className="mobile-link" onClick={() => setMenuOpen(false)}>
+          حساب کاربری
         </Link>
-      </div>
+        <Link to="/cart" className="mobile-link" onClick={() => setMenuOpen(false)}>
+          سبد خرید {cartCount > 0 ? `(${toFa(cartCount)})` : ""}
+        </Link>
+      </nav>
     </header>
   );
 }

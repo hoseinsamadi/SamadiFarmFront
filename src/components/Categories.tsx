@@ -18,11 +18,11 @@ export default function Categories() {
 
   const go = (cat: (typeof CATEGORIES)[number]) => {
     if ("scrollTo" in cat && cat.scrollTo) {
-      /* بسته‌ی هدیه → صفحه‌ی محصولات، سپس فرم سفارش */
-      navigate("/products");
+      /* بسته‌ی هدیه → فروشگاه، سپس فرم سفارش */
+      navigate("/shop");
       window.setTimeout(() => scrollToId("order"), 150);
     } else {
-      navigate(`/products?cat=${cat.id}`);
+      navigate(`/shop?cat=${cat.id}`);
     }
   };
 

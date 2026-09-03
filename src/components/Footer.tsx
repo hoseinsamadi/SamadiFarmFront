@@ -8,7 +8,7 @@ import { IconBee, IconClock, IconInstagram, IconPhone, IconPin } from "./icons";
 export default function Footer() {
   const navigate = useNavigate();
 
-  const goCategory = (id: CategoryId) => navigate(`/products?cat=${id}`);
+  const goCategory = (id: CategoryId) => navigate(`/shop?cat=${id}`);
 
   return (
     <footer className="site-footer">
@@ -58,7 +58,7 @@ export default function Footer() {
                 </li>
               ))}
               <li>
-                <Link to="/products">بسته‌ی هدیه</Link>
+                <Link to="/shop">بسته‌ی هدیه</Link>
               </li>
             </ul>
           </nav>

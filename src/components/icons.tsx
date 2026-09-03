@@ -252,3 +252,73 @@ export const IconLeaf = (p: IconProps) => (
     <path d="M5 19c3-4.5 6.5-8 11-11" />
   </Base>
 );
+
+export const IconUser = (p: IconProps) => (
+  <Base {...p}>
+    <circle cx="12" cy="8" r="3.6" />
+    <path d="M4.8 20.2c1.3-3.4 4-5.2 7.2-5.2s5.9 1.8 7.2 5.2" />
+  </Base>
+);
+
+export const IconCopy = (p: IconProps) => (
+  <Base {...p}>
+    <rect x="8.5" y="8.5" width="12" height="12" rx="2.2" />
+    <path d="M15.5 5.5v-.7A2.3 2.3 0 0 0 13.2 2.5H5.8a2.3 2.3 0 0 0-2.3 2.3v7.4a2.3 2.3 0 0 0 2.3 2.3h.7" />
+  </Base>
+);
+
+export const IconWallet = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M3.5 7.5A2.5 2.5 0 0 1 6 5h11.5A2.5 2.5 0 0 1 20 7.5v9A2.5 2.5 0 0 1 17.5 19H6a2.5 2.5 0 0 1-2.5-2.5z" />
+    <path d="M3.5 9h17M15.5 14h2" />
+  </Base>
+);
+
+export const IconCreditCard = (p: IconProps) => (
+  <Base {...p}>
+    <rect x="2.8" y="5.5" width="18.4" height="13" rx="2.4" />
+    <path d="M2.8 10h18.4M6.5 14.5h4" />
+  </Base>
+);
+
+export const IconLock = (p: IconProps) => (
+  <Base {...p}>
+    <rect x="5" y="10.5" width="14" height="10" rx="2.2" />
+    <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5M12 14.5v2.5" />
+  </Base>
+);
+
+export const IconThumbsUp = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M7 10.5v9.5H4.2a1.2 1.2 0 0 1-1.2-1.2v-7.1a1.2 1.2 0 0 1 1.2-1.2z" />
+    <path d="M7 10.5 11.5 3a2.1 2.1 0 0 1 2 2.6L12.8 8h5.4a2 2 0 0 1 2 2.4l-1.2 6.9a2 2 0 0 1-2 1.7H7" />
+  </Base>
+);
+
+export const IconPackage = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M12 2.8 20.5 7v10L12 21.2 3.5 17V7z" />
+    <path d="M3.5 7 12 11.2 20.5 7M12 11.2v10M7.8 4.9l8.5 4.2" />
+  </Base>
+);
+
+export const IconLogout = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M14.5 8V5.8A1.8 1.8 0 0 0 12.7 4H6a1.8 1.8 0 0 0-1.8 1.8v12.4A1.8 1.8 0 0 0 6 20h6.7a1.8 1.8 0 0 0 1.8-1.8V16" />
+    <path d="M9.5 12H21M17.5 8.5 21 12l-3.5 3.5" />
+  </Base>
+);
+
+export const IconMapPinPlus = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M12 21.5s-7-6.6-7-11.5a7 7 0 0 1 14 0c0 4.9-7 11.5-7 11.5Z" />
+    <path d="M12 7.2v5.6M9.2 10h5.6" />
+  </Base>
+);
+
+export const IconSpark = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M12 3.5c.7 3.8 2.7 5.8 6.5 6.5-3.8.7-5.8 2.7-6.5 6.5-.7-3.8-2.7-5.8-6.5-6.5 3.8-.7 5.8-2.7 6.5-6.5Z" />
+    <path d="M19 15.5c.3 1.7 1.2 2.6 2.9 2.9-1.7.3-2.6 1.2-2.9 2.9-.3-1.7-1.2-2.6-2.9-2.9 1.7-.3 2.6-1.2 2.9-2.9Z" />
+  </Base>
+);

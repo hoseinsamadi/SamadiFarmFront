@@ -105,7 +105,7 @@ export default function HomePage() {
       <section className="shell" style={{ padding: "4.5rem 1.25rem" }}>
         <div className="cta-band reveal">
           <h2>برداشت تازه هنوز روی میز است؛ تا تمام نشده بچشید</h2>
-          <Link to="/products" className="btn btn-primary">
+          <Link to="/shop" className="btn btn-primary">
             دیدن محصولات
             <IconArrow size={17} />
           </Link>
