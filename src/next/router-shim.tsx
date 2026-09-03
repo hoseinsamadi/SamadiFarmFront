@@ -14,7 +14,7 @@ export function Route({ element }: { path: string; element: ReactNode }) {
   return <>{element}</>;
 }
 
-type RouterLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> &
+type RouterLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "className"> &
   Omit<LinkProps, "href"> & { to: string; children: ReactNode };
 
 export function Link({ to, children, ...props }: RouterLinkProps) {
