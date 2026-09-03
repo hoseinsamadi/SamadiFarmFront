@@ -170,8 +170,8 @@ export default function OrderSection() {
           </div>
           <div className="contact-row">
             <IconInstagram size={19} />
-            <a href={CONTACT.instagramHref} target="_blank" rel="noreferrer" dir="ltr">
-              @{CONTACT.instagram}
+            <a href={CONTACT.YOUTUBEHref} target="_blank" rel="noreferrer" dir="ltr">
+              @{CONTACT.YOUTUBE}
             </a>
           </div>
           <div className="contact-row">
