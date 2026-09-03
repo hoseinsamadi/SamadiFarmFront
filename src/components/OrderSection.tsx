@@ -66,7 +66,7 @@ export default function OrderSection() {
 
       <div className="order-grid">
         {/* فرم سفارش */}
-        <div className="order-form-card reveal">
+       {/* <div className="order-form-card reveal">
           {sent ? (
             <div className="form-success">
               <span className="ring">
@@ -152,10 +152,10 @@ export default function OrderSection() {
               </button>
             </form>
           )}
-        </div>
+        </div>  */}
 
         {/* کارت تماس */}
-        <aside className="contact-card reveal" style={{ "--d": "0.12s" } as React.CSSProperties}>
+        <aside className="contact-card reveal w-288" style={{ "--d": "0.12s" } as React.CSSProperties}>
           <h3>گفتگوی مستقیم با زنبوردار</h3>
           <p>
             سؤال درباره‌ی برداشت فصل، آزمایش عسل یا سفارش عمده؟ هر روز پاسخگو هستیم — خودِ
