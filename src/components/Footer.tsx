@@ -3,7 +3,7 @@ import type React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BRAND, CATEGORIES, CONTACT, FOOTER_YEAR, type CategoryId } from "../data/site";
 import { NAV_ROUTES } from "./Header";
-import { IconBee, IconClock, IconInstagram, IconPhone, IconPin } from "./icons";
+import { IconBee, IconClock, IconInstagram, IconPhone, IconPin, IconYoutube } from "./icons";
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -61,9 +61,10 @@ export default function Footer() {
                   </button>
                 </li>
               ))}
-              <li>
+             {/* <li>
                 <Link to="/products">بسته‌ی هدیه</Link>
               </li>
+              */}
             </ul>
           </nav>
 
@@ -78,9 +79,9 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <IconInstagram size={16} />
-                <a href={CONTACT.instagramHref} target="_blank" rel="noreferrer" dir="ltr">
-                  @{CONTACT.instagram}
+                <IconYoutube size={16} />
+                <a href={CONTACT.YOUTUBEHref} target="_blank" rel="noreferrer" dir="ltr">
+                  @{CONTACT.YOUTUBE}
                 </a>
               </li>
               <li>

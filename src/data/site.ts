@@ -357,13 +357,13 @@ export const RATING_DIST = [
 ];
 
 export const CONTACT = {
-  phone: "۰۹۱۲ ۳۴۵ ۶۷۸۹",
-  phoneHref: "tel:+989123456789",
-  whatsapp: "989123456789",
-  instagram: "samadi.farm",
-  instagramHref: "https://instagram.com/samadi.farm",
-  address: "تهران، خیابان ولیعصر، بازارچه‌ی محلی، غرفه‌ی ۱۲",
+  phone: "09382866408",
+  phoneHref: "tel:+989382866408",
+  whatsapp: "989382866408",
+  YOUTUBE: "samadi.farm",
+  YOUTUBEHref: "https://youtube.com/@samadifarm",
+  address: "قزوین شهرک عارف فروشگاه صمدی فارم",
   hours: "شنبه تا پنجشنبه — ۹ صبح تا ۸ شب",
 };
 
-export const FOOTER_YEAR = "۱۴۰۴";
+export const FOOTER_YEAR = "1405";
