@@ -52,7 +52,7 @@ export default function HomePage() {
       </section>
 
       {/* ── پیش‌نمایش دیدگاه‌ها ── */}
-    {/*  <section className="shell" style={{ paddingTop: "4.5rem" }}>
+      <section className="shell" style={{ paddingTop: "4.5rem" }}>
         <div className="cats-head reveal">
           <div>
             <span className="eyebrow">دیدگاه‌ها</span>
@@ -97,7 +97,7 @@ export default function HomePage() {
             </figure>
           ))}
         </div>
-      </section> */}
+      </section> 
 
       {/* ── دعوت به خرید ── */}
       <section className="shell" style={{ padding: "4.5rem 1.25rem" }}>
