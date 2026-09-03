@@ -245,7 +245,7 @@ export const STATS = [
 
 /* ── کانال یوتیوب — لینک کانال خود را اینجا جایگزین کنید ── */
 export const YOUTUBE = {
-  channelUrl: "https://www.youtube.com/@samadifarm",
+  channelUrl: "https://www.youtube.com/@HoseinBeekeeper",
   channelLabel: "صمدی فارم در یوتیوب",
 };
 
