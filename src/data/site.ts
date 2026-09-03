@@ -361,7 +361,7 @@ export const CONTACT = {
   phoneHref: "tel:+989382866408",
   whatsapp: "989382866408",
   YOUTUBE: "samadi.farm",
-  YOUTUBEHref: "https://youtube.com/@samadifarm",
+  YOUTUBEHref: "https://youtube.com/@HoseinBeekeeper",
   address: "قزوین شهرک عارف فروشگاه صمدی فارم",
   hours: "شنبه تا پنجشنبه — ۹ صبح تا ۸ شب",
 };
