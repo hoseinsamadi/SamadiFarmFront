@@ -1,6 +1,6 @@
-import NextLink from "next/link";
+import NextLink, { type LinkProps } from "next/link";
 import { useRouter } from "next/router";
-import type { ReactNode } from "react";
+import type { ReactNode, AnchorHTMLAttributes } from "react";
 
 export function HashRouter({ children }: { children: ReactNode }) {
   return <>{children}</>;
@@ -14,23 +14,19 @@ export function Route({ element }: { path: string; element: ReactNode }) {
   return <>{element}</>;
 }
 
-export function Link({ to, children, ...props }: { to: string; children: ReactNode; [key: string]: unknown }) {
+type RouterLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> &
+  Omit<LinkProps, "href"> & { to: string; children: ReactNode };
+
+export function Link({ to, children, ...props }: RouterLinkProps) {
   return <NextLink href={to} {...props}>{children}</NextLink>;
 }
 
-export function NavLink({
-  to,
-  children,
-  className,
-  end,
-  ...props
-}: {
-  to: string;
-  children: ReactNode;
+type RouterNavLinkProps = RouterLinkProps & {
   className?: string | ((args: { isActive: boolean }) => string);
   end?: boolean;
-  [key: string]: unknown;
-}) {
+};
+
+export function NavLink({ to, children, className, end, ...props }: RouterNavLinkProps) {
   const router = useRouter();
   const current = router.asPath.split("?")[0].replace(/\/$/, "") || "/";
   const target = to.replace(/\/$/, "") || "/";
