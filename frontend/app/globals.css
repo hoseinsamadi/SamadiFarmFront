@@ -1,0 +1,13 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { background: #fffaf0; color: #241d16; font-family: Arial, sans-serif; }
+a { color: inherit; text-decoration: none; }
+.shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+.hero { min-height: 70vh; display: grid; align-content: center; gap: 18px; padding: 80px 0; }
+.eyebrow { font-weight: 700; }
+h1 { font-size: clamp(2.2rem, 6vw, 4.8rem); line-height: 1.15; margin: 0; }
+p { line-height: 2; max-width: 720px; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { display: inline-flex; padding: 12px 22px; border-radius: 12px; background: #d89521; color: #fff; font-weight: 700; }
+.btn.secondary { background: transparent; color: #8a5a12; border: 1px solid #d89521; }
+.page-section { padding: 100px 0; min-height: 70vh; }

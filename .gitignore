@@ -3,3 +3,18 @@ node_modules/
 dist/
 build/
 *.log
+
+# Django / Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+.venv/
+venv/
+
+# Environment files
+.env
+.env.local
+
+# Django generated files
+staticfiles/
+media/
